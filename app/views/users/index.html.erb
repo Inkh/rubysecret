@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Welcome to Secretsharer!(?)</h1>
+  <p>Where you could post all your darkest secrets for your anonymous peers to like...</p>
+
+  <%= flash[:errors] %>
+  <h1>Register</h1>
+  <form action="/create" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label for="name">Name:</label>
+    <input type="text" name="name"><br>
+    <label for="email">Email:</label>
+    <input type="text" name="email"><br>
+    <label for="password">Password:</label>
+    <input type="text" name="password"><br>
+    <label for="pw_confirm">Re-Enter Password:</label>
+    <input type="text" name="pw_confirm"><br>
+    <input type="submit" value="Register" class="btn btn-default">
+  </form>
+
+  <p><%= flash[:log_error] %></p>
+  <h1>Log In</h1>
+  <form action="/log" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label for="email">Email:</label>
+    <input type="text" name="email"><br>
+    <label for="password">Password:</label>
+    <input type="text" name="password"><br>
+    <input type="submit" value="Log In" class="btn btn-default">
+  </form>
+</div>

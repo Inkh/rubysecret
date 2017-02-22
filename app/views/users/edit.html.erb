@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>Edit Profile for <%= @user.name.capitalize %></h1>
+
+  <form action="/update/<%= @user.id %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label for="name">Name:</label>
+    <input type="text" name="name" placeholder="<%= @user.name.capitalize %>"><br>
+    <label for="email">Email:</label>
+    <input type="text" name="email" placeholder="<%= @user.email %>"><br>
+    <label for="password">New Password:</label>
+    <input type="text" name="password"><br>
+    <label for="pw_confirm">Re-Enter Password:</label>
+    <input type="text" name="pw_confirm"><br>
+    <input type="submit" value="Update" class="btn btn-default">
+    <a href="/view/<%= @user.id %>" class="btn btn-default">Back</a>
+  </form>
+
+</div>

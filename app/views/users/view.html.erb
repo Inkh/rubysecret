@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Welcome <%= @user.name.capitalize %>!</h1>
+
+  <form action="/out" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="submit" value="Log Out" class="btn btn-default">
+    <a href="/edit/<%= @user.id %>" class="btn btn-default">Edit Profile</a>
+    <a href="/secrets/show" class="btn btn-default">All Secrets</a>
+  </form>
+
+  <h2>Tell us another Secret</h2>
+  <form action="/new_secret" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <textarea name="content" rows="8" cols="80"></textarea><br>
+    <input type="submit" value="Shhh..." class="btn btn-default">
+  </form>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Secrets</h3>
+      <% @secrets.each do |secret| %>
+        <p>
+          <form action="/bury_secret/<%= secret.id %>" method="post">
+            <%= secret.content %>
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="submit" value="Bury Secret" class="btn btn-default">
+          </form>
+        </p>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <h3>Secrets I like</h3>
+      <% @all_secrets.each do |secret| %>
+        <% if @user_likes.exists?(:secret_id => secret.id) %>
+          <p><%= secret.content %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
