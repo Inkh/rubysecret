@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to ("/view/#{user.id}")
     else
-      flash[:log_error] = "Something was wrong with log in credentials, please try again motherfucker"
+      flash[:log_error] = "Something was wrong with log in credentials, please try again"
       redirect_to ('/')
     end
   end
